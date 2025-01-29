@@ -1,0 +1,72 @@
+<div>
+    <h2 mat-dialog-title>{{mockData.editStudentDetailsTitle}}</h2>
+    <mat-dialog-content>
+        <form [formGroup]="studentDetails">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width w-100">
+                        <mat-label>{{mockData.name}}</mat-label>
+                        <input matInput placeholder="Ex. Aditya Kulkarni" formControlName="name">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width w-100">
+                        <mat-label>{{mockData.city}}</mat-label>
+                        <input matInput placeholder="Ex. San Francisco" formControlName="city">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width w-100">
+                        <mat-label>{{mockData.country}}</mat-label>
+                        <input type="text" matInput formControlName="country" [matAutocomplete]="auto">
+                        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                            <ng-container *ngFor="let option of filteredOptions | async; track option">
+                                <mat-option [value]="option">{{option.name}}</mat-option>
+                            </ng-container>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <mat-label>{{mockData.age}}</mat-label>
+                        <mat-select formControlName="age">
+                            <ng-container *ngFor="let item of age">
+                                <mat-option [value]="item">{{item}}</mat-option>
+                            </ng-container>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        <label id="example-radio-group-label">{{mockData.selectGender}}</label>
+                    </div>
+                    <mat-radio-group aria-label="Select an option" formControlName="gender">
+                        <mat-radio-button value="Male">Male</mat-radio-button>
+                        <mat-radio-button value="Female">Female</mat-radio-button>
+                        <mat-radio-button value="Other">Other</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div class="col-md-6">
+                    <section class="example-section" formGroupName="languages">
+                        <mat-label>{{mockData.selectLanguage}}</mat-label>
+                        <div class="d-flex">
+                            <mat-checkbox formControlName="english">English</mat-checkbox>
+                            <mat-checkbox formControlName="hindi">Hindi</mat-checkbox>
+                            <mat-checkbox formControlName="marathi">Marathi</mat-checkbox>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="d-flex justify-content-between mt-3">
+                    <div class="example-button-row">
+                        <button mat-raised-button type="button" (click)="handleSubmitStudentDetails()">{{mockData.submit}}</button>
+                    </div>
+                    <div class="example-button-row">
+                        <button mat-raised-button type="button" (click)="handleCancel()">{{mockData.cancel}}</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </mat-dialog-content>
+</div>
